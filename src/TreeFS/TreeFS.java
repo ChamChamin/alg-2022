@@ -46,7 +46,25 @@ public class TreeFS {
 
     }
 
-   
+    public String createXMLCode(){
+
+        return createXMLCode( this.root, "" );
+
+    }
+
+    private String createXMLCode(Tree tree, String space){
+
+        if(tree == null) return "";
+
+        String tag = tree.value.getName();
+
+        if(tree.son != null) {
+            return "\n"+space + "<" + tag + ">" + createXMLCode(tree.son, space + "  ")+ "\n" + space + "<" + tag + "/>" + createXMLCode(tree.brother, space);
+        }else{
+            return "\n" + space +  "<" + tag + "/>" + createXMLCode(tree.brother, space);
+        }
+
+    }
 
 
 
